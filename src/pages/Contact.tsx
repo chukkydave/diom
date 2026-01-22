@@ -226,7 +226,7 @@ const Contact = () => {
         </section>
 
         {/* FAQ Teaser */}
-        <section className="py-20 bg-muted/50">
+        {/* <section className="py-20 bg-muted/50">
           <div className="container-custom text-center">
             <h2 className=" text-2xl md:text-3xl font-bold text-foreground mb-4">
               Have More Questions?
@@ -243,7 +243,7 @@ const Contact = () => {
               </Button>
             </div>
           </div>
-        </section>
+        </section> */}
       </div>
     </Layout>
   );

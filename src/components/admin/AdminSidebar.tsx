@@ -89,16 +89,20 @@ export const AdminSidebar = () => {
         <div className="flex items-center justify-between">
           {!isCollapsed && (
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-base">D</span>
-              </div>
+              <img 
+                src="/Diom2.png" 
+                alt="DIOM" 
+                className="w-20 h-20 object-contain"
+              />
               <span className="font-bold text-lg text-foreground tracking-tight">DIOM Admin</span>
             </div>
           )}
           {isCollapsed && (
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center mx-auto">
-              <span className="text-primary-foreground font-bold text-base">D</span>
-            </div>
+            <img 
+              src="/Diom2.png" 
+              alt="DIOM" 
+              className="w-20 h-20 object-contain mx-auto"
+            />
           )}
           <Button
             variant="ghost"

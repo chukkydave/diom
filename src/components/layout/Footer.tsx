@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Package, MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin, ArrowRight } from "lucide-react";
+import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -45,7 +45,7 @@ const Footer = () => {
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+                <Button size="lg" className="border border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground rounded-md h-11 px-8">
                   Contact Us
                 </Button>
               </Link>
@@ -59,10 +59,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center">
-                <Package className="w-6 h-6 text-accent-foreground" />
-              </div>
+            <Link to="/" className="flex items-center mb-6">
+              <img
+                src="/Diom2.png"
+                alt="DIOM Courier Services"
+                className="w-24 h-24 object-contain"
+              />
               <div className="flex flex-col">
                 <span className=" font-bold text-2xl">DIOM</span>
                 <span className="text-xs tracking-widest-custom uppercase text-primary-foreground/70">
