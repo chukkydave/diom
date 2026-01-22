@@ -46,7 +46,7 @@ const servicesData: Record<string, {
   },
   "interstate-delivery": {
     title: "Interstate Delivery",
-    subtitle: "Nationwide Coverage in 2-3 Days",
+    subtitle: "Nationwide Coverage in 2-4 Days",
     description: "Connect with customers across Nigeria through our reliable interstate delivery service. We cover all 36 states and FCT, ensuring your packages arrive safely within 2-3 working days.",
     icon: Truck,
     image: heroTruck,
@@ -129,12 +129,11 @@ const servicesData: Record<string, {
     icon: Truck,
     image: heroTruck,
     features: [
-      "Fleet of modern trucks",
-      "Heavy cargo handling equipment",
-      "Scheduled and on-demand pickups",
-      "GPS tracking on all vehicles",
-      "Experienced drivers",
-      "Route optimization",
+      "Access to a partnered network of modern trucks",
+      "Truck capacities ranging from 3 to 30 tons",
+      "Experienced and vetted drivers",
+      "Route optimization for efficient and timely deliveries",
+      "Flexible trucking solutions for short- and long-haul operations",
     ],
     benefits: [
       { title: "Capacity", description: "Trucks from 3 to 30 tons capacity" },
@@ -279,7 +278,7 @@ const ServiceDetail = () => {
         </section>
 
         {/* Pricing Section */}
-        <section className="section-padding bg-muted/50">
+        {/* <section className="section-padding bg-muted/50">
           <div className="container-custom">
             <div className="service-content text-center max-w-2xl mx-auto mb-12">
               <span className="inline-block text-accent font-medium tracking-widest uppercase text-sm mb-4">
@@ -314,7 +313,7 @@ const ServiceDetail = () => {
               </Link>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* CTA Section */}
         <section className="py-20 bg-primary text-primary-foreground">

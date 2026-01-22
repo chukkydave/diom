@@ -6,14 +6,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { AddressAutocomplete } from "@/components/AddressAutocomplete";
 import gsap from "gsap";
 import { toast } from "sonner";
 
 const serviceTypes = [
   { value: "lagos", label: "Lagos Delivery", icon: Package, description: "Same-day within Lagos" },
-  { value: "interstate", label: "Interstate Delivery", icon: Truck, description: "2-3 days nationwide" },
+  { value: "interstate", label: "Interstate Delivery", icon: Truck, description: "2-4 days nationwide" },
   { value: "international", label: "International Shipping", icon: Plane, description: "Global delivery" },
-  { value: "freight", label: "Freight Forwarding", icon: Ship, description: "Bulk cargo shipping" },
+  { value: "freight", label: "Trucking Service", icon: Truck, description: "Bulk goods movement" },
 ];
 
 const nigerianStates = [
@@ -24,11 +25,31 @@ const nigerianStates = [
   "Zamfara", "Katsina", "Jigawa", "Bayelsa", "Ebonyi"
 ];
 
+const countries = [
+  "Nigeria", "United States", "United Kingdom", "Canada", "Australia", "Germany",
+  "France", "Italy", "Spain", "Netherlands", "Belgium", "Switzerland", "Austria",
+  "Sweden", "Norway", "Denmark", "Finland", "Poland", "Portugal", "Greece",
+  "Ireland", "Czech Republic", "Hungary", "Romania", "Bulgaria", "Croatia",
+  "Slovakia", "Slovenia", "Estonia", "Latvia", "Lithuania", "Luxembourg",
+  "Malta", "Cyprus", "Japan", "China", "South Korea", "Singapore", "Malaysia",
+  "Thailand", "Indonesia", "Philippines", "Vietnam", "India", "Pakistan",
+  "Bangladesh", "Sri Lanka", "United Arab Emirates", "Saudi Arabia", "Qatar",
+  "Kuwait", "Bahrain", "Oman", "Israel", "Turkey", "Egypt", "South Africa",
+  "Kenya", "Ghana", "Brazil", "Argentina", "Chile", "Mexico", "Colombia",
+  "Peru", "Venezuela", "Ecuador", "New Zealand", "Russia", "Ukraine"
+];
+
 const Booking = () => {
   const pageRef = useRef<HTMLDivElement>(null);
   const [selectedService, setSelectedService] = useState("lagos");
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [pickupAddress, setPickupAddress] = useState("");
+  const [deliveryAddress, setDeliveryAddress] = useState("");
+  const [pickupState, setPickupState] = useState("");
+  const [deliveryState, setDeliveryState] = useState("");
+  const [pickupCountry, setPickupCountry] = useState("");
+  const [deliveryCountry, setDeliveryCountry] = useState("");
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -47,6 +68,18 @@ const Booking = () => {
 
     return () => ctx.revert();
   }, []);
+
+  // Reset address fields when service type changes
+  useEffect(() => {
+    if (step === 2) {
+      setPickupAddress("");
+      setDeliveryAddress("");
+      setPickupState("");
+      setDeliveryState("");
+      setPickupCountry("");
+      setDeliveryCountry("");
+    }
+  }, [selectedService, step]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,8 +145,8 @@ const Booking = () => {
                           type="button"
                           onClick={() => setSelectedService(service.value)}
                           className={`service-option p-6 rounded-2xl border-2 text-left transition-all ${selectedService === service.value
-                              ? "border-accent bg-accent/5"
-                              : "border-border hover:border-accent/50"
+                            ? "border-accent bg-accent/5"
+                            : "border-border hover:border-accent/50"
                             }`}
                         >
                           <div className="flex items-start gap-4">
@@ -174,23 +207,68 @@ const Booking = () => {
                             <Label htmlFor="senderEmail">Email</Label>
                             <Input id="senderEmail" type="email" placeholder="email@example.com" required />
                           </div>
-                          <div>
-                            <Label htmlFor="pickupState">Pickup State</Label>
-                            <Select>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select state" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {nigerianStates.map((state) => (
-                                  <SelectItem key={state} value={state.toLowerCase()}>{state}</SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div>
-                            <Label htmlFor="pickupAddress">Pickup Address</Label>
-                            <Textarea id="pickupAddress" placeholder="Enter full pickup address" required />
-                          </div>
+                          {selectedService === "lagos" ? (
+                            <AddressAutocomplete
+                              id="pickupAddress"
+                              label="Pickup Address"
+                              placeholder="Search for pickup address..."
+                              value={pickupAddress}
+                              onChange={setPickupAddress}
+                              required
+                            />
+                          ) : selectedService === "international" ? (
+                            <>
+                              <div>
+                                <Label htmlFor="pickupCountry">Pickup Country</Label>
+                                <Select value={pickupCountry} onValueChange={setPickupCountry}>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select country" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {countries.map((country) => (
+                                      <SelectItem key={country} value={country.toLowerCase()}>{country}</SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              <div>
+                                <Label htmlFor="pickupAddress">Pickup Address</Label>
+                                <Textarea
+                                  id="pickupAddress"
+                                  placeholder="Enter full pickup address"
+                                  value={pickupAddress}
+                                  onChange={(e) => setPickupAddress(e.target.value)}
+                                  required
+                                />
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div>
+                                <Label htmlFor="pickupState">Pickup State</Label>
+                                <Select value={pickupState} onValueChange={setPickupState}>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select state" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {nigerianStates.map((state) => (
+                                      <SelectItem key={state} value={state.toLowerCase()}>{state}</SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              <div>
+                                <Label htmlFor="pickupAddress">Pickup Address</Label>
+                                <Textarea
+                                  id="pickupAddress"
+                                  placeholder="Enter full pickup address"
+                                  value={pickupAddress}
+                                  onChange={(e) => setPickupAddress(e.target.value)}
+                                  required
+                                />
+                              </div>
+                            </>
+                          )}
                         </div>
                       </div>
 
@@ -214,23 +292,68 @@ const Booking = () => {
                             <Label htmlFor="receiverEmail">Email</Label>
                             <Input id="receiverEmail" type="email" placeholder="email@example.com" />
                           </div>
-                          <div>
-                            <Label htmlFor="deliveryState">Delivery State</Label>
-                            <Select>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select state" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {nigerianStates.map((state) => (
-                                  <SelectItem key={state} value={state.toLowerCase()}>{state}</SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div>
-                            <Label htmlFor="deliveryAddress">Delivery Address</Label>
-                            <Textarea id="deliveryAddress" placeholder="Enter full delivery address" required />
-                          </div>
+                          {selectedService === "lagos" ? (
+                            <AddressAutocomplete
+                              id="deliveryAddress"
+                              label="Delivery Address"
+                              placeholder="Search for delivery address..."
+                              value={deliveryAddress}
+                              onChange={setDeliveryAddress}
+                              required
+                            />
+                          ) : selectedService === "international" ? (
+                            <>
+                              <div>
+                                <Label htmlFor="deliveryCountry">Delivery Country</Label>
+                                <Select value={deliveryCountry} onValueChange={setDeliveryCountry}>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select country" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {countries.map((country) => (
+                                      <SelectItem key={country} value={country.toLowerCase()}>{country}</SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              <div>
+                                <Label htmlFor="deliveryAddress">Delivery Address</Label>
+                                <Textarea
+                                  id="deliveryAddress"
+                                  placeholder="Enter full delivery address"
+                                  value={deliveryAddress}
+                                  onChange={(e) => setDeliveryAddress(e.target.value)}
+                                  required
+                                />
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div>
+                                <Label htmlFor="deliveryState">Delivery State</Label>
+                                <Select value={deliveryState} onValueChange={setDeliveryState}>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select state" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {nigerianStates.map((state) => (
+                                      <SelectItem key={state} value={state.toLowerCase()}>{state}</SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              <div>
+                                <Label htmlFor="deliveryAddress">Delivery Address</Label>
+                                <Textarea
+                                  id="deliveryAddress"
+                                  placeholder="Enter full delivery address"
+                                  value={deliveryAddress}
+                                  onChange={(e) => setDeliveryAddress(e.target.value)}
+                                  required
+                                />
+                              </div>
+                            </>
+                          )}
                         </div>
                       </div>
                     </div>

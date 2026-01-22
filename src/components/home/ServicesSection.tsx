@@ -21,7 +21,7 @@ const services = [
     title: "Interstate Delivery",
     description: "Efficient delivery across all 36 states and FCT within 2-3 working days. Nationwide coverage you can count on.",
     link: "/services/interstate-delivery",
-    highlight: "2-3 Days",
+    highlight: "2-4 Days",
   },
   {
     icon: Plane,

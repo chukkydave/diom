@@ -34,7 +34,7 @@ const values = [
 ];
 
 const stats = [
-  { value: "10+", label: "Years of Experience" },
+  { value: "6+", label: "Years of Experience" },
   { value: "50,000+", label: "Successful Deliveries" },
   { value: "36+", label: "States Covered" },
   { value: "99%", label: "Customer Satisfaction" },
@@ -142,7 +142,7 @@ const About = () => {
                   />
                 </div>
                 <div className="absolute -bottom-6 -right-6 bg-accent text-accent-foreground rounded-2xl p-6 shadow-xl">
-                  <p className="text-4xl  font-bold">10+</p>
+                  <p className="text-4xl  font-bold">6+</p>
                   <p className="text-sm">Years of Excellence</p>
                 </div>
               </div>

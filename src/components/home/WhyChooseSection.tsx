@@ -10,7 +10,7 @@ const features = [
   {
     icon: Clock,
     title: "Nationwide Speed",
-    description: "2-3 day delivery across all 36 states and FCT. Our efficient network ensures urgent shipments arrive quickly.",
+    description: "2-4 day delivery across all 36 states and FCT. Our efficient network ensures urgent shipments arrive quickly.",
   },
   {
     icon: Shield,

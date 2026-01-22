@@ -22,12 +22,12 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    details: ["diomexpress@gmail.com", "support@diomcourier.com"],
+    details: ["diomexpress@gmail.com"],
   },
   {
     icon: Clock,
     title: "Working Hours",
-    details: ["Monday - Friday: 8AM - 8PM", "Saturday: 9AM - 5PM", "Sunday: Closed"],
+    details: ["Mon - Friday: 9am to 6pm", "Saturday: 10am to 5pm", "Sunday: closed"],
   },
 ];
 
@@ -101,7 +101,7 @@ const Contact = () => {
                 Get in <span className="text-accent">Touch</span>
               </h1>
               <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto">
-                Have questions about our services? Need a custom quote? Our team is here to help. 
+                Have questions about our services? Need a custom quote? Our team is here to help.
                 Reach out to us through any of the channels below.
               </p>
             </div>
@@ -145,7 +145,7 @@ const Contact = () => {
                   We'd Love to <span className="text-accent">Hear</span> From You
                 </h2>
                 <p className="text-muted-foreground mb-8 leading-relaxed">
-                  Whether you have a question about our services, need a custom quote, or want to 
+                  Whether you have a question about our services, need a custom quote, or want to
                   discuss partnership opportunities, our team is ready to assist you.
                 </p>
 
